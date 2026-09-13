@@ -52,6 +52,8 @@ class Home extends Component {
                     <SearchForm />
 
                     <h2>Películas Populares</h2>
+                    <Link to="/Peliculas">Ver todas</Link>
+
 
                     {
                          this.state.peliculasPopulares.map((pelicula, idx) =>
@@ -61,6 +63,22 @@ class Home extends Component {
                          />
                         )
                     }
+
+                    <h2>Películas Cartelera</h2>
+                    
+                    <Link to="/Peliculas">Ver todas</Link>
+
+
+                    {
+                        this.state.peliculasCartelera.map((pelicula, idx) =>
+                        <Card
+                        key={idx}
+                        pelicula={pelicula}
+                         />
+                         )
+                    }
+
+
 
                 </div>
 
