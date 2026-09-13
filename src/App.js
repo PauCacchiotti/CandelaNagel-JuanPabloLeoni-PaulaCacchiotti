@@ -3,8 +3,9 @@ import Home from "./screens/Home/Home";
 import Navbar from "./componentes/Navbar/Navbar";
 import Footer from "./componentes/Footer/Footer";
 import Favoritos from "./screens/Favoritos/Favoritos";
-import Listado from "./screens/Listado/Listado";
+import Series from "./screens/Series/Series";
 import { Route, Switch } from "react-router-dom";
+import NotFound from "./screens/NotFound/NotFound";
 
 function App(){
 
@@ -15,15 +16,14 @@ function App(){
             <Navbar />
 
             <Switch>
-              <Route path="/Listado" component={Listado}/>
+              <Route path="/" exact={true} component={Home}/>
+
+              <Route path="/Series" component={Series}/>
 
               <Route path="/Favoritos" component={Favoritos}/>
 
-              <Route path="/" exact={true} component={Home}/>
-
+              <Route path="" component={NotFound}/>
             </Switch>
-           
-
             <Footer/>
 
         </div>

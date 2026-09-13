@@ -16,7 +16,7 @@ function Navbar(){
                 </li>
 
                 <li>
-                    <Link to="/Listado">Listado</Link>
+                    <Link to="/Series">Listado</Link>
                 </li>
 
                 <li>

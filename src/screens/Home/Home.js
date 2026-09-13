@@ -15,59 +15,56 @@ class Home extends Component {
 
     }
 
+    componentDidMount() {
+        fetch("https://api.themoviedb.org/3/movie/popular?api_key=e7925d2a271ab3943d2cc21147be472b")
 
-componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/popular?api_key=e7925d2a271ab3943d2cc21147be472b")
+        .then(response => response.json())
+        .then(data => this.setState({
+                peliculasPopulares: data.results
+            }))
+        .catch(error => console.log(error))
 
-    .then(response => response.json())
-    .then(data => this.setState({
-            peliculasPopulares: data.results
+        fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=e7925d2a271ab3943d2cc21147be472b")
+
+        .then(response => response.json())
+
+        .then(data => this.setState({
+            peliculasCartelera: data.results
         }))
-    .catch(error => console.log(error))
 
-    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=e7925d2a271ab3943d2cc21147be472b")
+        .catch(error => console.log(error))
 
-    .then(response => response.json())
-
-    .then(data => this.setState({
-        peliculasCartelera: data.results
-    }))
-
-    .catch(error => console.log(error))
-
- 
-}
     
+    }
 
+    render(){
 
-render(){
+            console.log(this.state.peliculasPopulares)
 
-        console.log(this.state.peliculasPopulares)
+            return(
 
-        return(
+                <div>
 
-            <div>
+                    <h1>Nombre de la aplicación</h1>
 
-                <h1>Nombre de la aplicación</h1>
+                    <h2>Bienvenidos</h2>
 
-                <h2>Bienvenidos</h2>
+                    <SearchForm />
 
-                <SearchForm />
+                    <h2>Películas Populares</h2>
 
-                <h2>Películas Populares</h2>
+                    {
+                         this.state.peliculasPopulares.map((pelicula, idx) =>
+                         <Card
+                         key={idx}
+                         pelicula={pelicula}
+                         />
+                        )
+                    }
 
-                {
-                     this.state.peliculasCartelera.map((pelicula, idx) =>
-                     <Card
-                     key={idx}
-                     pelicula={pelicula}
-                     />
-                    )
-                }
+                </div>
 
-            </div>
-
-        )
+            )
 
     }
 

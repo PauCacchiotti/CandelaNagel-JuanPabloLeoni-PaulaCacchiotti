@@ -1,12 +1,12 @@
 import React from "react";
 
-function Listado(){
+function Peliculas(){
 
     return(
 
         <div>
 
-            <h1>Listado</h1>
+            <h1>Peliculas</h1>
 
         </div>
 
@@ -14,4 +14,4 @@ function Listado(){
 
 }
 
-export default Listado;
+export default Peliculas;

@@ -10,9 +10,7 @@ function NotFound(){
 
             <h2>Página no encontrada</h2>
 
-            <p>
-                La página que estás buscando no existe.
-            </p>
+            <p>La página que estás buscando no existe.</p>
 
         </div>
 
