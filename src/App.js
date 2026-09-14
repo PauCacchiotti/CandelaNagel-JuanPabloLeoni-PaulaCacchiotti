@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import NotFound from "./screens/NotFound/NotFound";
 import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
 import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
+import Register from "./screens/Register/Register";
 
 function App(){
 
@@ -26,6 +27,7 @@ function App(){
               <Route path="/PeliculasCartelera" component={PeliculasCartelera} />
 
               <Route path="/Favoritos" component={Favoritos}/>
+              <Route path="/register" component={Register}/>
 
               <Route path="" component={NotFound}/>
             </Switch>

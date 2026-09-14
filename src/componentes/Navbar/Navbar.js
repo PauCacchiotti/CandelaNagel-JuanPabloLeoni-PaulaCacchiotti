@@ -26,6 +26,10 @@ function Navbar(){
                     <Link to="/Favoritos">Favoritos</Link>
                 </li>
 
+                <li>
+                     <Link to="/register">Crear Cuenta</Link>
+                </li>
+
             </ul>
 
         </nav>
