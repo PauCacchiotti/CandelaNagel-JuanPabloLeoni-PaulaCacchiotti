@@ -33,6 +33,10 @@ function Navbar(){
                      <Link to="/register">Crear Cuenta</Link>
                 </li>
 
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+
             </ul>
 
         </nav>

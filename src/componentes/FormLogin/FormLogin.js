@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-class FormRegister extends Component {
+const cookies = new Cookies()
+
+class FormLogin extends Component {
 
     constructor(props){
         super(props)
@@ -28,48 +31,27 @@ class FormRegister extends Component {
     submit(event){
         event.preventDefault()
 
-        let usuarioACrear = {
-            email: this.state.email,
-            password: this.state.password
-        }
-
-            if (!usuarioACrear.email.includes("@")) {
-            this.setState({
-                mensajeError: "El email ingresado no es válido"
-            })
-            return
-        }
-
-        if (usuarioACrear.password.length < 6) {
-            this.setState({
-                mensajeError: "La contraseña debe tener un mínimo de 6 caracteres"
-            })
-            return
-        }
-
         let usersStorage = localStorage.getItem("users")
 
-        if (usersStorage !== null) {
-            let usersParseado = JSON.parse(usersStorage)
-            let usersFiltrado = usersParseado.filter(user => user.email === usuarioACrear.email)
-
-            if (usersFiltrado.length > 0) {
-                this.setState({
-                    mensajeError: "Ya existe un usuario con el email ingresado"
-                })
-                return
-            }
-
-            usersParseado.push(usuarioACrear)
-            let usersEnJson = JSON.stringify(usersParseado)
-            localStorage.setItem("users", usersEnJson)
-        } else {
-            let usersInicial = [usuarioACrear]
-            let usersEnJson = JSON.stringify(usersInicial)
-            localStorage.setItem("users", usersEnJson)
+        if (usersStorage === null) {
+            this.setState({
+                mensajeError: "Credenciales incorrectas"
+            })
+            return
         }
 
-        this.props.history.push("/login")
+        let usersParseado = JSON.parse(usersStorage)
+        let usersFiltrado = usersParseado.filter(user => user.email === this.state.email && user.password === this.state.password)
+        let user = usersFiltrado[0]
+
+        if (user) {
+            cookies.set("user-auth-cookie", user.email)
+            this.props.history.push("/")
+        } else {
+            this.setState({
+                mensajeError: "Credenciales incorrectas"
+            })
+        }
     }
 
     render(){
@@ -95,7 +77,7 @@ class FormRegister extends Component {
                 />
 
                 <button type="submit">
-                    Registrarse
+                    Iniciar sesión
                 </button>
 
                 {
@@ -113,4 +95,4 @@ class FormRegister extends Component {
 
 }
 
-export default withRouter(FormRegister);
+export default withRouter(FormLogin);
