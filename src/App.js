@@ -6,6 +6,8 @@ import Favoritos from "./screens/Favoritos/Favoritos";
 import Series from "./screens/Series/Series";
 import { Route, Switch } from "react-router-dom";
 import NotFound from "./screens/NotFound/NotFound";
+import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
+import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
 
 function App(){
 
@@ -19,6 +21,9 @@ function App(){
               <Route path="/" exact={true} component={Home}/>
 
               <Route path="/Series" component={Series}/>
+
+              <Route path="/PeliculasPopulares" component={PeliculasPopulares} />
+              <Route path="/PeliculasCartelera" component={PeliculasCartelera} />
 
               <Route path="/Favoritos" component={Favoritos}/>
 

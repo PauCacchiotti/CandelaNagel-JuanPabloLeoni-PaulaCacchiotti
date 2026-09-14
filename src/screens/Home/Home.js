@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../componentes/Card/Card";
 import SearchForm from "../../componentes/SearchForm/SearchForm";
+import "./Home.css";
 
 class Home extends Component {
     
@@ -52,32 +53,32 @@ class Home extends Component {
                     <SearchForm />
 
                     <h2>Películas Populares</h2>
-                    <Link to="/Peliculas">Ver todas</Link>
+                    <Link to="/PeliculasPopulares">Ver todas</Link>
 
-
-                    {
-                         this.state.peliculasPopulares.map((pelicula, idx) =>
-                         <Card
-                         key={idx}
-                         pelicula={pelicula}
-                         />
-                        )
-                    }
-
+                    <seccion className="cards">
+                        {
+                             this.state.peliculasPopulares.map((pelicula, idx) =>
+                             <Card
+                             key={idx}
+                             contenido={pelicula}
+                             />
+                            )
+                        }
+                    </seccion>
                     <h2>Películas Cartelera</h2>
                     
-                    <Link to="/Peliculas">Ver todas</Link>
+                    <Link to="/PeliculasCartelera">Ver todas</Link>
+                    <seccion className="cards">
 
-
-                    {
-                        this.state.peliculasCartelera.map((pelicula, idx) =>
-                        <Card
-                        key={idx}
-                        pelicula={pelicula}
-                         />
-                         )
-                    }
-
+                        {
+                            this.state.peliculasCartelera.map((pelicula, idx) =>
+                            <Card
+                            key={idx}
+                            contenido={pelicula}
+                             />
+                             )
+                        }
+                    </seccion>
 
 
                 </div>
