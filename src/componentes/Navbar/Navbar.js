@@ -19,7 +19,10 @@ function Navbar(){
                     <Link to="/Series">Series</Link>
                 </li>
                 <li>
-                    <Link to="/PeliculasPopulares">Películas</Link>
+                    <Link to="/PeliculasPopulares">Películas Populares</Link>
+                </li>
+                <li>
+                    <Link to="/PeliculasCartelera">Películas en Cartelera</Link>
                 </li>
 
                 <li>

@@ -49,7 +49,7 @@ class PeliculasPopulares extends Component{
     render(){
         return(
             <>
-                <h1>Peliculas</h1>
+                <h1>Peliculas Populares</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarPeliculas(texto)}/>
                 <section className="cards">
                     {
