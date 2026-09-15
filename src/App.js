@@ -10,6 +10,7 @@ import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares"
 import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
+import Detalle from "./screens/Detalle/Detalle";
 
 function App(){
 
@@ -30,6 +31,7 @@ function App(){
               <Route path="/Favoritos" component={Favoritos}/>
               <Route path="/register" component={Register}/>
               <Route path="/login" component={Login}/>
+              <Route path="/detalle/:tipo/:id" component={Detalle}/>
 
               <Route path="" component={NotFound}/>
             </Switch>
