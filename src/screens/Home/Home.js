@@ -55,30 +55,32 @@ class Home extends Component {
                     <h2>Películas Populares</h2>
                     <Link to="/PeliculasPopulares">Ver todas</Link>
 
-                    <seccion className="cards">
+                    <section className="cards">
                         {
                              this.state.peliculasPopulares.map((pelicula, idx) =>
                              <Card
                              key={idx}
                              contenido={pelicula}
+                             tipo="movie"
                              />
                             )
                         }
-                    </seccion>
+                    </section>
                     <h2>Películas Cartelera</h2>
                     
                     <Link to="/PeliculasCartelera">Ver todas</Link>
-                    <seccion className="cards">
+                    <section className="cards">
 
                         {
                             this.state.peliculasCartelera.map((pelicula, idx) =>
                             <Card
                             key={idx}
                             contenido={pelicula}
+                            tipo="movie"
                              />
                              )
                         }
-                    </seccion>
+                    </section>
 
 
                 </div>

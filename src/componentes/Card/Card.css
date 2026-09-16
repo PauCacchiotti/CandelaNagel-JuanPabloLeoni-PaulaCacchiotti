@@ -1,6 +1,7 @@
 .single-card-movie {
-    width: 24%;
-    background-color: white;
+   width: 100%;
+    background-color: gray;
+    color: white;
     border-radius: 5px;
     box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15);
     margin-bottom: 20px;
@@ -28,4 +29,15 @@
 
 .single-card-movie button {
     cursor: pointer;
+}
+
+.single-card-movie button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+.single-card-movie a {
+    color: white;
 }

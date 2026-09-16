@@ -11,6 +11,7 @@ import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera"
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import Detalle from "./screens/Detalle/Detalle";
+import "./App.css";
 
 function App(){
 

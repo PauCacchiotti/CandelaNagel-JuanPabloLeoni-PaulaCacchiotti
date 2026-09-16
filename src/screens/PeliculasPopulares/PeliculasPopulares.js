@@ -54,7 +54,7 @@ class PeliculasPopulares extends Component{
                 <section className="cards">
                     {
                     this.state.peliculasFiltradas.map((pelicula, idx) => 
-                        <Card key={idx} contenido={pelicula} />)
+                        <Card key={idx} contenido={pelicula} tipo="movie" />)
                     }
                 </section>
                 <button onClick={() => this.masPeliculas()}>
