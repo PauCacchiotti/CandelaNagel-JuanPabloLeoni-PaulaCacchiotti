@@ -45,9 +45,6 @@ class Home extends Component {
             return(
 
                 <div>
-
-                    <h1>Nombre de la aplicación</h1>
-
                     <h2>Bienvenidos</h2>
 
                     <SearchForm />

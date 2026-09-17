@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
+import "./Navbar.css";
 
 const cookies = new Cookies();
 
@@ -17,7 +18,7 @@ function Navbar(){
             
             <h1>Movie App</h1>
 
-            <ul>
+            <ul className="elemento_menu">
 
                 <li>
                     <Link to="/">Home</Link>
@@ -32,7 +33,6 @@ function Navbar(){
                 <li>
                     <Link to="/PeliculasCartelera">Películas en Cartelera</Link>
                 </li>
-
                 <li>
                     <Link to="/Favoritos">Favoritos</Link>
                 </li>
@@ -50,9 +50,9 @@ function Navbar(){
 
                 <h1>Movie App</h1>
 
-                <ul>
+                <ul className="elemento_menu" >
 
-                    <li>
+                    <li >
                         <Link to="/">Home</Link>
                     </li>
 
