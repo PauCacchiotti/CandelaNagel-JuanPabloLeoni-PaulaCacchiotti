@@ -6,9 +6,14 @@ import "./Navbar.css";
 const cookies = new Cookies();
 
 
-function Navbar(){
+function Navbar(props){
 
     const usuarioEnSesion = cookies.get("user-auth-cookie");
+
+    function logout(){
+        cookies.remove("user-auth-cookie");
+        props.history.push("/");
+    }
 
     if (usuarioEnSesion !== undefined)
     {
@@ -35,6 +40,10 @@ function Navbar(){
                 </li>
                 <li>
                     <Link to="/Favoritos">Favoritos</Link>
+                </li>
+
+                <li>
+                    <button onClick={() => logout()}>Cerrar sesión</button>
                 </li>
 
             </ul>
