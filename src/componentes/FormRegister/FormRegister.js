@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import "./FormRegister.css";
 
 class FormRegister extends Component {
     constructor(props){
@@ -60,7 +61,7 @@ class FormRegister extends Component {
     }
     render(){
         return(
-            <form onSubmit={(event) => this.submit(event)}>
+            <form className="register-form" onSubmit={(event) => this.submit(event)}>
                 <label>Email</label>
                 <input
                     type="text"

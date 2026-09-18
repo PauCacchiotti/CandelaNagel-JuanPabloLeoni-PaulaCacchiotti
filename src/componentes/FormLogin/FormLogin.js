@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
+import "./FormLogin.css";
 
 const cookies = new Cookies()
 
@@ -46,7 +47,7 @@ class FormLogin extends Component {
     }
     render(){
         return(
-            <form onSubmit={(event) => this.submit(event)}>
+            <form className="login-form" onSubmit={(event) => this.submit(event)}>
                 <label>Email</label>
                 <input
                     type="text"

@@ -1,0 +1,23 @@
+.login-form{
+    padding: .5rem 0;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+}
+
+.login-form{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.login-form button{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}

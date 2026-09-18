@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import "./SearchForm.css";
 
 class SearchForm extends Component {
     constructor(props){
@@ -27,7 +28,7 @@ class SearchForm extends Component {
     }
     render(){
         return(
-            <form onSubmit={(evento) => this.evitarSubmit(evento)}>
+            <form className="search-form" onSubmit={(evento) => this.evitarSubmit(evento)}>
                 <input
                     type="text"
                     value={this.state.busqueda}
