@@ -11,6 +11,7 @@ import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera"
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import Detalle from "./screens/Detalle/Detalle";
+import ResultadosBusqueda from "./screens/ResultadosBusqueda/ResultadosBusqueda";
 import "./App.css";
 
 function App(){
@@ -33,6 +34,7 @@ function App(){
               <Route path="/register" component={Register}/>
               <Route path="/login" component={Login}/>
               <Route path="/detalle/:tipo/:id" component={Detalle}/>
+              <Route path="/busqueda/:tipo/:busqueda" component={ResultadosBusqueda} />
 
               <Route path="" component={NotFound}/>
             </Switch>

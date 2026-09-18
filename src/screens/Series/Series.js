@@ -55,12 +55,22 @@ class Series extends Component{
             <>
                 <h1>Series</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarSeries(texto)}/>
-                <section className="cards">
-                    {
-                    this.state.seriesFiltradas.map((serie, idx) => 
-                        <Card key={idx} contenido={serie} />)
-                    }
-                </section>
+                {
+                    this.state.series.length === 0 ?
+                    <h3>Cargando...</h3>
+                    :
+                    <section className="cards">
+                        {
+                            this.state.seriesFiltradas.map((serie, idx) =>
+                                <Card
+                                    key={idx}
+                                    contenido={serie}
+                                    tipo="tv"
+                                />
+                            )
+                        }
+                    </section>
+                }
                 <button onClick={() => this.masSeries()}>
                     Más series
                 </button>

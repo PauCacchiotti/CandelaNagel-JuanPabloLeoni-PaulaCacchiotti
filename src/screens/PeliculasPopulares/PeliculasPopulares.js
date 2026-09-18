@@ -51,12 +51,22 @@ class PeliculasPopulares extends Component{
             <>
                 <h1>Peliculas Populares</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarPeliculas(texto)}/>
-                <section className="cards">
-                    {
-                    this.state.peliculasFiltradas.map((pelicula, idx) => 
-                        <Card key={idx} contenido={pelicula} tipo="movie" />)
-                    }
-                </section>
+                {
+                    this.state.peliculas.length === 0 ?
+                    <h3>Cargando...</h3>
+                    :
+                    <section className="cards">
+                        {
+                            this.state.peliculasFiltradas.map((pelicula, idx) =>
+                                <Card
+                                    key={idx}
+                                    contenido={pelicula}
+                                    tipo="movie"
+                                />
+                            )
+                        }
+                    </section>
+                }
                 <button onClick={() => this.masPeliculas()}>
                     Más películas
                 </button>
