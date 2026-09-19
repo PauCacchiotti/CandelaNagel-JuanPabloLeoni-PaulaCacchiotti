@@ -1,21 +1,36 @@
-.register-form{
-    padding: .5rem 0;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 10px;
+.register-form {
+    width: 350px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 8px;
 }
-.register-form input{
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 6px;
-    line-height: 1.5;
-    font-size: 1rem;
+
+.register-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
-.register-form button{
-    border: 1px solid #ccc;
+
+.register-form input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
     border-radius: 4px;
-    padding: 7px 12px;
-    font-size: 0.9rem;
-    cursor: pointer;
+}
+
+.register-form button {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.register-form p {
+    color: red;
+    margin: 10px 0 0 0;
 }

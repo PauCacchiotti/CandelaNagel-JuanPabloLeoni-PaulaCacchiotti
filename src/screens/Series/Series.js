@@ -52,7 +52,7 @@ class Series extends Component{
     }
     render(){
         return(
-            <>
+            <React.Fragment>
                 <h1>Series</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarSeries(texto)}/>
                 {
@@ -74,7 +74,7 @@ class Series extends Component{
                 <button onClick={() => this.masSeries()}>
                     Más series
                 </button>
-            </>
+            </React.Fragment>
         );
     }
 }

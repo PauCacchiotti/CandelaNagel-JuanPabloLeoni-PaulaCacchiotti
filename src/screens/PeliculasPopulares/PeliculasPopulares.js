@@ -48,7 +48,7 @@ class PeliculasPopulares extends Component{
     }
     render(){
         return(
-            <>
+            <React.Fragment>
                 <h1>Peliculas Populares</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarPeliculas(texto)}/>
                 {
@@ -70,7 +70,7 @@ class PeliculasPopulares extends Component{
                 <button onClick={() => this.masPeliculas()}>
                     Más películas
                 </button>
-            </>
+            </React.Fragment>
         );
     }
 }

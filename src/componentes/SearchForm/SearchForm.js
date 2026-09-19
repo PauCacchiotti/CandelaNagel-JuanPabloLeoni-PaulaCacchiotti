@@ -22,9 +22,7 @@ class SearchForm extends Component {
     }
     evitarSubmit(evento){
         evento.preventDefault()
-        this.props.history.push(
-            "/busqueda/" + this.state.tipo + "/" + encodeURIComponent(this.state.busqueda)
-        )
+        this.props.history.push("/busqueda/" + this.state.tipo + "/" + this.state.busqueda)
     }
     render(){
         return(

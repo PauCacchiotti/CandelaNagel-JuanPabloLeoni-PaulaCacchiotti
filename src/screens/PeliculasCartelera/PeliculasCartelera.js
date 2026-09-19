@@ -48,7 +48,7 @@ class PeliculasCartelera extends Component{
     }
     render(){
         return(
-            <>
+            <React.Fragment>
                 <h1>Peliculas en cartelera</h1>
                 <Filtro filtrarContenido={(texto) => this.filtrarPeliculas(texto)}/>
                 {
@@ -70,7 +70,7 @@ class PeliculasCartelera extends Component{
                 <button onClick={() => this.masPeliculas()}>
                     Más películas
                 </button>
-            </>
+            </React.Fragment>
         );
     }
 }

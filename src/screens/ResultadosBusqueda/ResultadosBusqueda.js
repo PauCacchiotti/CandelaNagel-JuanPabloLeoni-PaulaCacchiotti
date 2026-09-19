@@ -12,7 +12,7 @@ class ResultadosBusqueda extends Component {
     componentDidMount(){
         let tipo = this.props.match.params.tipo
         let busqueda = this.props.match.params.busqueda
-        fetch("https://api.themoviedb.org/3/search/" + tipo + "?api_key=e7925d2a271ab3943d2cc21147be472b&query=" + encodeURIComponent(busqueda))
+        fetch("https://api.themoviedb.org/3/search/" + tipo + "?api_key=e7925d2a271ab3943d2cc21147be472b&query=" + busqueda)
         .then(response => response.json())
         .then(data => this.setState({
             resultados: data.results,
