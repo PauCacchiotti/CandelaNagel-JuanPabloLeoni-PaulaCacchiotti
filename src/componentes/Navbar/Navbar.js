@@ -16,8 +16,8 @@ function Navbar(props){
     {
         return(
         <nav>
-            <h1>Movie App</h1>
-            <ul className="elemento_menu">
+            <img src="/img/logo.jpg" alt="Logo del cine" className="logo" />
+\            <ul className="elemento_menu">
                 <li>
                     <Link to="/">Home</Link>
                 </li>
@@ -42,7 +42,8 @@ function Navbar(props){
     } else {
         return (
              <nav>
-                <h1>Movie App</h1>
+                <img src="/img/logo.jpg" alt="Logo del cine" className="logo" />
+
                 <ul className="elemento_menu" >
                     <li >
                         <Link to="/">Home</Link>

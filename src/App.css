@@ -16,3 +16,17 @@ button {
     padding: 10px;
     cursor: pointer;
 }
+
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid red;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
