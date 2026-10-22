@@ -1,79 +1,66 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
 import "./FormLogin.css";
 
 const cookies = new Cookies()
 
-class FormLogin extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            email: "",
-            password: "",
-            mensajeError: ""
-        }
+function FormLogin(props) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [mensajeError, setMensajeError] = useState("");
+
+    function controlarEmail(event){
+        setEmail(event.target.value)
     }
-    controlarEmail(event){
-        this.setState({
-            email: event.target.value
-        })
+    function controlarPassword(event){
+        setPassword(event.target.value)
     }
-    controlarPassword(event){
-        this.setState({
-            password: event.target.value
-        })
-    }
-    submit(event){
+    function submit(event){
         event.preventDefault()
         let usersStorage = localStorage.getItem("users")
         if (usersStorage === null) {
-            this.setState({
-                mensajeError: "Credenciales incorrectas"
-            })
+            setMensajeError("Credenciales incorrectas")
             return
         }
         let usersParseado = JSON.parse(usersStorage)
-        let usersFiltrado = usersParseado.filter(user => user.email === this.state.email && user.password === this.state.password)
+        let usersFiltrado = usersParseado.filter(user => user.email === email && user.password === password)
         let user = usersFiltrado[0]
         if (user) {
             cookies.set("user-auth-cookie", user.email)
-            this.props.history.push("/")
+            props.history.push("/")
         } else {
-            this.setState({
-                mensajeError: "Credenciales incorrectas"
-            })
+            setMensajeError("Credenciales incorrectas")
         }
     }
-    render(){
-        return(
-            <form className="login-form" onSubmit={(event) => this.submit(event)}>
-                <label>Email</label>
-                <input
-                    type="text"
-                    value={this.state.email}
-                    onChange={(event) => this.controlarEmail(event)}
-                    placeholder="Ingresá tu email"
-                />
-                <label>Contraseña</label>
-                <input
-                    type="password"
-                    value={this.state.password}
-                    onChange={(event) => this.controlarPassword(event)}
-                    placeholder="Ingresá tu contraseña"
-                />
-                <button type="submit">
-                    Iniciar sesión
-                </button>
-                {
-                    this.state.mensajeError !== "" ?
-                    <p>{this.state.mensajeError}</p>
-                    :
-                    ""
-                }
-            </form>
-        )
-    }
+
+    return(
+        <form className="login-form" onSubmit={(event) => submit(event)}>
+            <label>Email</label>
+            <input
+                type="text"
+                value={email}
+                onChange={(event) => controlarEmail(event)}
+                placeholder="Ingresá tu email"
+            />
+            <label>Contraseña</label>
+            <input
+                type="password"
+                value={password}
+                onChange={(event) => controlarPassword(event)}
+                placeholder="Ingresá tu contraseña"
+            />
+            <button type="submit">
+                Iniciar sesión
+            </button>
+            {
+                mensajeError !== "" ?
+                <p>{mensajeError}</p>
+                :
+                ""
+            }
+        </form>
+    )
 }
 
 export default withRouter(FormLogin);
