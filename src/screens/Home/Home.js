@@ -1,80 +1,73 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../componentes/Card/Card";
 import SearchForm from "../../componentes/SearchForm/SearchForm";
 import "./Home.css";
 
-class Home extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            peliculasPopulares :[],
-            peliculasCartelera: [],
-            cargandoPopulares: true,
-            cargandoCartelera: true
-        }
-    }
-    componentDidMount() {
+function Home(){
+    const [peliculasPopulares, setPeliculasPopulares] = useState([]);
+    const [peliculasCartelera, setPeliculasCartelera] = useState([]);
+    const [cargandoPopulares, setCargandoPopulares] = useState(true);
+    const [cargandoCartelera, setCargandoCartelera] = useState(true);
+    useEffect(() => {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=e7925d2a271ab3943d2cc21147be472b")
         .then(response => response.json())
-        .then(data => this.setState({
-                peliculasPopulares: data.results,
-                cargandoPopulares: false
-            }))
+        .then(data => {
+                setPeliculasPopulares(data.results);
+                setCargandoPopulares(false);
+        })
         .catch(error => console.log(error))
         fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=e7925d2a271ab3943d2cc21147be472b")
         .then(response => response.json())
-        .then(data => this.setState({
-            peliculasCartelera: data.results,
-            cargandoCartelera: false
-        }))
+        .then(data => {
+            setPeliculasCartelera(data.results);
+            setCargandoCartelera(false);
+        })
         .catch(error => console.log(error))
-    }
-    render(){
-            console.log(this.state.peliculasPopulares)
-            return(
-                <div>
-                    <h2>Bienvenidos</h2>
-                    <SearchForm />
-                    <h2>Películas Populares</h2>
-                    <Link to="/PeliculasPopulares">Ver todas</Link>
+    }, [])
+    console.log(peliculasPopulares)
+    return(
+        <div>
+            <h2>Bienvenidos</h2>
+            <SearchForm />
+            <h2>Películas Populares</h2>
+            <Link to="/PeliculasPopulares">Ver todas</Link>
+            {
+                cargandoPopulares === true ?
+                <h3>Cargando...</h3>
+                :
+                <section className="cards">
                     {
-                        this.state.cargandoPopulares === true ?
-                        <h3>Cargando...</h3>
-                        :
-                        <section className="cards">
-                            {
-                                this.state.peliculasPopulares.map((pelicula, idx) =>
-                                    <Card
-                                        key={idx}
-                                        contenido={pelicula}
-                                        tipo="movie"
-                                    />
-                                )
-                            }
-                        </section>
+                        peliculasPopulares.map((pelicula, idx) =>
+                            <Card
+                                key={idx}
+                                contenido={pelicula}
+                                tipo="movie"
+                            />
+                        )
                     }
-                    <h2>Películas Cartelera</h2>
-                    <Link to="/PeliculasCartelera">Ver todas</Link>
+                </section>
+            }
+            <h2>Películas Cartelera</h2>
+            <Link to="/PeliculasCartelera">Ver todas</Link>
+            {
+                cargandoCartelera === true ?
+                <h3>Cargando...</h3>
+                :
+                <section className="cards">
                     {
-                        this.state.cargandoCartelera === true ?
-                        <h3>Cargando...</h3>
-                        :
-                        <section className="cards">
-                            {
-                                this.state.peliculasCartelera.map((pelicula, idx) =>
-                                    <Card
-                                        key={idx}
-                                        contenido={pelicula}
-                                        tipo="movie"
-                                    />
-                                )
-                            }
-                        </section>
+                        peliculasCartelera.map((pelicula, idx) =>
+                            <Card
+                                key={idx}
+                                contenido={pelicula}
+                                tipo="movie"
+                            />
+                        )
                     }
-                </div>
-            )
-    }
+                </section>
+            }
+        </div>
+    )
 }
 
 export default Home
