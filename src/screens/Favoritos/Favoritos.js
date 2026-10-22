@@ -1,65 +1,64 @@
+import React, {useState, useEffect} from "react";
 import React, { Component } from "react";
 import Cookies from "universal-cookie";
 import Card from "../../componentes/Card/Card";
 
 const cookies = new Cookies();
 
-class Favoritos extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            peliculasFavoritas: [],
-            seriesFavoritas: []
-        }
-    }
-    componentDidMount(){
-        let usuario = cookies.get("user-auth-cookie");
-        if(usuario === undefined){
-            this.props.history.push("/login");
-        } else {
-            let claveFavoritos = "favoritos-" + usuario;
-            let favoritosStorage = localStorage.getItem(claveFavoritos);
-            if(favoritosStorage !== null){
-                let favoritosParseado = JSON.parse(favoritosStorage);
-                let peliculas = favoritosParseado.filter(
-                    favorito => favorito.tipo === "movie"
-                );
-                let series = favoritosParseado.filter(
-                    favorito => favorito.tipo === "tv"
-                );
-                this.setState({
-                    peliculasFavoritas: peliculas,
-                    seriesFavoritas: series
-                });
+function Favoritos (props) {
+        const [peliculasFavoritas, setPeliculasFavoritas] = useState([]);
+        const [seriesFavoritas, setSeriesFavoritas] = useState([]);
+
+        useEffect(() => {
+            let usuario = cookies.get("user-auth-cookie");
+
+            if(usuario === undefined){
+                props.history.push("/login");
+            } else {
+                let claveFavoritos = "favoritos-" + usuario;
+                let favoritosStorage = localStorage.getItem(claveFavoritos);
+
+                if(favoritosStorage !== null){
+                    let favoritosParseado = JSON.parse(favoritosStorage);
+
+                    let peliculas = favoritosParseado.filter(
+                        favorito => favorito.tipo === "movie"
+                    );
+
+                    let series = favoritosParseado.filter(
+                        favorito => favorito.tipo === "tv"
+                    );
+
+                    setPeliculasFavoritas(peliculas);
+                    setSeriesFavoritas(series);
+                }
             }
-        }
-    }
-    actualizarFavoritos(id, tipo){
+        }, []);
+
+        function actualizarFavoritos(id, tipo){
         if(tipo === "movie"){
-            let peliculasActualizadas = this.state.peliculasFavoritas.filter(
+            let peliculasActualizadas = peliculasFavoritas.filter(
                 pelicula => pelicula.id !== id
             );
-            this.setState({
-                peliculasFavoritas: peliculasActualizadas
-            });
+
+            setPeliculasFavoritas(peliculasActualizadas);
         } else {
-            let seriesActualizadas = this.state.seriesFavoritas.filter(
+            let seriesActualizadas = seriesFavoritas.filter(
                 serie => serie.id !== id
             );
-            this.setState({
-                seriesFavoritas: seriesActualizadas
-            });
+
+            setSeriesFavoritas(seriesActualizadas);
         }
-    }
-    render(){
+        }
+
         return(
             <div>
                 <h1>Favoritos</h1>
                 <h2>Películas favoritas</h2>
                 <section className="cards">
                     {
-                        this.state.peliculasFavoritas.length > 0 ?
-                        this.state.peliculasFavoritas.map((pelicula) =>
+                        peliculasFavoritas.length > 0 ?
+                        peliculasFavoritas.map((pelicula) =>
                             <Card
                                 key={pelicula.id}
                                 contenido={pelicula}
@@ -74,8 +73,8 @@ class Favoritos extends Component {
                 <h2>Series favoritas</h2>
                 <section className="cards">
                     {
-                        this.state.seriesFavoritas.length > 0 ?
-                        this.state.seriesFavoritas.map((serie) =>
+                        seriesFavoritas.length > 0 ?
+                        seriesFavoritas.map((serie) =>
                             <Card
                                 key={serie.id}
                                 contenido={serie}
@@ -89,7 +88,8 @@ class Favoritos extends Component {
                 </section>
             </div>
         )
-    }
+
 }
+
 
 export default Favoritos;

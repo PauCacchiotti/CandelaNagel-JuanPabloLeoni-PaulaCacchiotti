@@ -5,9 +5,10 @@ import "./Navbar.css";
 
 const cookies = new Cookies();
 
-
 function Navbar(props){
+
     const usuarioEnSesion = cookies.get("user-auth-cookie");
+    
     function logout(){
         cookies.remove("user-auth-cookie");
         props.history.push("/");
