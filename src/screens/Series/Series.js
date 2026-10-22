@@ -1,82 +1,68 @@
-import React, { Component } from "react";
+import React,  { useState, useEffect } from "react";
 import Card from "../../componentes/Card/Card";
 import "./Series.css";
 import Filtro from "../../componentes/Filtro/Filtro";
 
-class Series extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            series:[],
-            seriesFiltradas:[],
-            pagina:1
-        };
-    }
-    componentDidMount(){
+function Series() {
+    const [series, setSeries] = useState([]);
+    const [seriesFiltradas, setSeriesFiltradas] = useState([]);
+    const [pagina, setPagina] = useState(1);
+
+    useEffect(() => {
         fetch("https://api.themoviedb.org/3/tv/popular?api_key=e7925d2a271ab3943d2cc21147be472b")
         .then(response => response.json())
-        .then(data => this.setState({
-            series: data.results,
-            seriesFiltradas: data.results
-        }))
+        .then(data => {
+            setSeries(data.results);
+            setSeriesFiltradas(data.results);
+        })
         .catch(error => console.log(error));
-    }
-    masSeries(){
-        let paginaSiguiente = this.state.pagina + 1;
+    }, [])
+    function masSeries(){
+        let paginaSiguiente = pagina + 1;
         fetch(`https://api.themoviedb.org/3/tv/popular?api_key=e7925d2a271ab3943d2cc21147be472b&page=${paginaSiguiente}`)
             .then(response => response.json())
             .then(data => {
-
-                const todasLasSeries =
-                    this.state.series.concat(data.results);
-
-                this.setState({
-                    series: todasLasSeries,
-                    seriesFiltradas: todasLasSeries,
-                    pagina: paginaSiguiente
-                });
-
+                const todasLasSeries = series.concat(data.results);
+                setSeries(todasLasSeries);
+                setSeriesFiltradas(todasLasSeries);
+                setPagina(paginaSiguiente);
             })
             .catch(error => console.log(error));
     }
-    filtrarSeries(input) {
-        const seriesFiltradas = this.state.series.filter(
+    function filtrarSeries(input) {
+        const seriesFiltradas = series.filter(
             (serie) =>
                 serie.name
                     .toLowerCase()
                     .includes(input.toLowerCase())
         );
-        this.setState({
-            seriesFiltradas: seriesFiltradas
-        });
+        setSeriesFiltradas(seriesFiltradas);
     }
-    render(){
-        return(
-            <React.Fragment>
-                <h1>Series</h1>
-                <Filtro filtrarContenido={(texto) => this.filtrarSeries(texto)}/>
-                {
-                    this.state.series.length === 0 ?
-                    <h3>Cargando...</h3>
-                    :
-                    <section className="cards">
-                        {
-                            this.state.seriesFiltradas.map((serie, idx) =>
-                                <Card
-                                    key={idx}
-                                    contenido={serie}
-                                    tipo="tv"
-                                />
-                            )
-                        }
-                    </section>
-                }
-                <button onClick={() => this.masSeries()}>
-                    Más series
-                </button>
-            </React.Fragment>
-        );
-    }
+    return(
+        <React.Fragment>
+            <h1>Series</h1>
+            <Filtro filtrarContenido={(texto) => filtrarSeries(texto)}/>
+            {
+                series.length === 0 ?
+                <h3>Cargando...</h3>
+                :
+                <section className="cards">
+                    {
+                        seriesFiltradas.map((serie) =>
+                            <Card
+                                key={serie.id}
+                                contenido={serie}
+                                tipo="tv"
+                            />
+                        )
+                    }
+                </section>
+            }
+            <button onClick={() => masSeries()}>
+                Más series
+            </button>
+        </React.Fragment>
+    );
 }
 
 export default Series;
