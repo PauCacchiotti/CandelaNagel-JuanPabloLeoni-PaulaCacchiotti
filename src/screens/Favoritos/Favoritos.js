@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import Card from "../../componentes/Card/Card";
 
@@ -63,7 +62,7 @@ function Favoritos (props) {
                                 key={pelicula.id}
                                 contenido={pelicula}
                                 tipo="movie"
-                                actualizarFavoritos={(id, tipo) => this.actualizarFavoritos(id, tipo)}
+                                actualizarFavoritos={(id, tipo) => actualizarFavoritos(id, tipo)}
                             />
                         )
                         :
@@ -79,7 +78,7 @@ function Favoritos (props) {
                                 key={serie.id}
                                 contenido={serie}
                                 tipo="tv"
-                                actualizarFavoritos={(id, tipo) => this.actualizarFavoritos(id, tipo)}
+                                actualizarFavoritos={(id, tipo) => actualizarFavoritos(id, tipo)}
                             />
                         )
                         :

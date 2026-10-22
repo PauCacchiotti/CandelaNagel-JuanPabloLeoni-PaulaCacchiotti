@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../componentes/Card/Card";
 import "./PeliculasCartelera.css";
 import Filtro from "../../componentes/Filtro/Filtro";
@@ -44,7 +43,7 @@ function PeliculasCartelera(props){
   
     function filtrarPeliculas(input) {
     const filtradas = peliculas.filter(
-        pelicula => pelicula.title.toLowerCase() === input.toLowerCase()
+        pelicula => pelicula.title.toLowerCase().includes(input.toLowerCase())
        );
        setPeliculasFiltradas(filtradas);
     
@@ -53,7 +52,7 @@ function PeliculasCartelera(props){
         return(
             <React.Fragment>
                 <h1>Peliculas en cartelera</h1>
-                <Filtro filtrarContenido={(texto) => this.filtrarPeliculas(texto)}/>
+                <Filtro filtrarContenido={(texto) => filtrarPeliculas(texto)}/>
                 {
                 peliculas.length === 0 ?
                 <h3>Cargando...</h3>
@@ -70,7 +69,7 @@ function PeliculasCartelera(props){
                         }
                     </section>
                 }
-                <button onClick={() => this.masPeliculas()}>
+                <button onClick={() => masPeliculas()}>
                     Más películas
                 </button>
             </React.Fragment>
