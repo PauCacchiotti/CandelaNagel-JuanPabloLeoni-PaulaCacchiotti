@@ -25,20 +25,12 @@ function PeliculasCartelera(props){
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=e7925d2a271ab3943d2cc21147be472b&page=${paginaSiguiente}`)
             .then(response => response.json())
             .then(data => {
-                let todasLasPeliculas = [];
-                 for(let i = 0; i < peliculas.length; i++){
-                    todasLasPeliculas.push(peliculas[i]);
-                }
-
-                 for(let i = 0; i < data.results.length; i++){
-                todasLasPeliculas.push(data.results[i]);
-             }
-
+                let todasLasPeliculas = peliculas.concat(data.results);
                 setPeliculas(todasLasPeliculas);
                 setPeliculasFiltradas(todasLasPeliculas);
                 setPagina(paginaSiguiente);
             })
-            .catch(error => console.log(error));
+                .catch(error => console.log(error));
             }         
   
     function filtrarPeliculas(input) {
